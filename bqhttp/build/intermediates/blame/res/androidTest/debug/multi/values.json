@@ -1,0 +1,26 @@
+[
+    {
+        "outputFile": "F:\\ziliao\\github\\mymvpdemo\\bqhttp\\build\\intermediates\\res\\merged\\androidTest\\debug\\values\\values.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 42,
+                    "endOffset": 93
+                },
+                "from": {
+                    "file": "F:\\ziliao\\github\\mymvpdemo\\bqhttp\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endColumn": 42,
+                        "endOffset": 93
+                    }
+                }
+            }
+        ]
+    }
+]

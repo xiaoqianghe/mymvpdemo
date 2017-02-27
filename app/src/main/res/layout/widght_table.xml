@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+   android:gravity="center"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="60dp"
+        android:layout_height="80dp"
+        android:orientation="vertical"
+
+        >
+        <LinearLayout
+            android:id="@+id/ll_top"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:background="#41CEF1"
+            >
+            <TextView
+                android:id="@+id/tv_top"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="8号桌"
+                android:textColor="#ffffff"
+                android:textSize="16sp"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_bottom"
+            android:layout_width="60dp"
+            android:layout_height="20dp"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:background="#30a2be"
+            android:gravity="center"
+            >
+            <TextView
+                android:id="@+id/tv_bottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1-3人"
+                android:textColor="#ffffff"
+                android:textSize="12sp"
+                />
+        </LinearLayout>
+
+
+
+
+        <LinearLayout
+            android:id="@+id/ll_des"
+            android:layout_width="60dp"
+            android:layout_height="20dp"
+            android:orientation="vertical"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            >
+            <TextView
+                android:id="@+id/tv_des"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="锁台中"
+                android:textColor="#FF4081"
+                android:textSize="12sp"
+                />
+        </LinearLayout>
+
+
+
+
+
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
