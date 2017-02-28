@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="debug"><source path="F:\ziliao\github\mymvpdemo\bqhttp\build\intermediates\bundles\debug\assets"/></dataSet><dataSet config="main"><source path="F:\ziliao\github\mymvpdemo\bqhttp\src\androidTest\assets"/></dataSet></merger>
+<merger version="3"><dataSet config="debug"><source path="F:\ziliao\github\mymvpdemo\bqhttp\build\intermediates\bundles\debug\assets"/></dataSet><dataSet config="main"><source path="F:\ziliao\github\mymvpdemo\bqhttp\src\androidTest\assets"/><source path="F:\ziliao\github\mymvpdemo\bqhttp\build\generated\assets\shaders\androidTest\debug"/></dataSet></merger>

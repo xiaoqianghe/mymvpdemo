@@ -14,6 +14,8 @@ import com.suirenshi.mymvpdemo.modul.login.AuthenticateBean;
 import com.suirenshi.mymvpdemo.presenter.NewMvpPresenter;
 import com.suirenshi.mymvpdemo.view.NewMvpView;
 
+import io.realm.Realm;
+
 /**
  * @包名: com.suirenshi.mymvpdemo.ui
  * @类名: NewMvpActivity
@@ -29,12 +31,16 @@ public class NewMvpActivity extends BaseMvpActivity<NewMvpView,NewMvpPresenter> 
     private Button bt_login;
     private TextView tv_show_login;
 
+    private Realm realm;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mvp);
         bt_login=(Button)findViewById(R.id.bt_login);
         tv_show_login=(TextView)findViewById(R.id.tv_show_login);
+
+
         initEvent();
     }
 
@@ -42,7 +48,9 @@ public class NewMvpActivity extends BaseMvpActivity<NewMvpView,NewMvpPresenter> 
         bt_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                presenter.toLogin("17700000000", "123456");
+               // presenter.toLogin("17700000000", "123456");
+
+               // presenter.loadPrintIp(122,258,0,1000);
             }
         });
     }

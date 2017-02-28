@@ -11,6 +11,8 @@ import com.suirenshi.mymvpdemo.common.NetTest;
 import com.suirenshi.mymvpdemo.modul.login.AuthenticateBean;
 import com.suirenshi.mymvpdemo.view.NewMvpView;
 
+import io.realm.Realm;
+
 /**
  * @包名: com.suirenshi.mymvpdemo.presenter
  * @类名: NewMvpPresenter
@@ -24,8 +26,11 @@ public class NewMvpPresenter extends BaseParsenter<NewMvpView> {
 
     private RequestBiz requestBiz;
     private Handler mHandler;
+    private Realm realm;
 
     public NewMvpPresenter() {
+
+        realm = Realm.getDefaultInstance();
 
     }
 
@@ -70,6 +75,35 @@ public class NewMvpPresenter extends BaseParsenter<NewMvpView> {
                    }
                });
    }
+
+
+//    public void loadPrintIp(int apiKey, int branchNo, int start, int size){
+//
+//        NetTest.get().getPrintList(apiKey,branchNo,start,size)
+//                .showProgress(mView)
+//                .execute(new OnBQNetEventListener() {
+//                    @Override
+//                    public void netRequestSuccess(BQNetEvent event) {
+//                        String authenticateString = event.getNetResult();
+//                        PrintStyleInfo mPrintStyleInfo = JSON.parseObject(authenticateString, PrintStyleInfo.class);
+//                        if(null!=mPrintStyleInfo&&mPrintStyleInfo.getPrintingStyle().size()>0){
+//                            PrintingStyleSQL.save(realm, mPrintStyleInfo.getPrintingStyle());
+//                        }
+//
+//
+//                    }
+//
+//                    @Override
+//                    public boolean netRequestFail(BQNetEvent event) {
+//                        return false;
+//                    }
+//                });
+//
+//
+//    }
+
+
+
 
 
 

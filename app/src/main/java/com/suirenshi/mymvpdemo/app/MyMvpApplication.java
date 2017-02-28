@@ -4,6 +4,10 @@ import android.app.Application;
 
 import com.bq2015.oknet.OkHttpUtils;
 
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
+
+
 /**
  * @包名: com.suirenshi.mymvpdemo.app
  * @类名: MyMvpApplication
@@ -19,10 +23,24 @@ public class MyMvpApplication extends Application{
         super.onCreate();
         initOkhttps();
 
+        initRealm();
+
+
+
+
     }
 
     private void initOkhttps() {
         OkHttpUtils.init(this);
         OkHttpUtils.getInstance().setConnectTimeout(80000);
     }
+
+    private void initRealm(){
+        Realm.init(this);
+        RealmConfiguration realmConfiguration=new RealmConfiguration.Builder().deleteRealmIfMigrationNeeded().build();
+        Realm.setDefaultConfiguration(realmConfiguration);
+    }
+
+
+
 }
