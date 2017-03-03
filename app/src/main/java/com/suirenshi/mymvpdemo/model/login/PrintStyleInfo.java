@@ -2,8 +2,6 @@ package com.suirenshi.mymvpdemo.model.login;
 
 import java.util.List;
 
-import io.realm.RealmObject;
-
 /**
  * @包名: com.suirenshi.order.domain
  * @类名: PrintStyleInfo
@@ -14,7 +12,7 @@ import io.realm.RealmObject;
  *
  */
 
-public class PrintStyleInfo extends RealmObject {
+public class PrintStyleInfo  {
 
 
     /**

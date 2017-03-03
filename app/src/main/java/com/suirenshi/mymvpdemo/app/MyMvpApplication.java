@@ -22,11 +22,7 @@ public class MyMvpApplication extends Application{
     public void onCreate() {
         super.onCreate();
         initOkhttps();
-
         initRealm();
-
-
-
 
     }
 
