@@ -39,8 +39,6 @@ public class NewMvpActivity extends BaseMvpActivity<NewMvpView,NewMvpPresenter> 
         setContentView(R.layout.activity_mvp);
         bt_login=(Button)findViewById(R.id.bt_login);
         tv_show_login=(TextView)findViewById(R.id.tv_show_login);
-
-
         initEvent();
     }
 
@@ -51,6 +49,10 @@ public class NewMvpActivity extends BaseMvpActivity<NewMvpView,NewMvpPresenter> 
                // presenter.toLogin("17700000000", "123456");
 
                // presenter.loadPrintIp(122,258,0,1000);
+
+                presenter.toNewPost();
+
+//                presenter.toNewCallBackPost();
             }
         });
     }
@@ -64,7 +66,7 @@ public class NewMvpActivity extends BaseMvpActivity<NewMvpView,NewMvpPresenter> 
 
     @Override
     public NewMvpPresenter initPresenter() {
-        return new NewMvpPresenter();
+        return new NewMvpPresenter(NewMvpActivity.this);
     }
     @Override
     public void showLoadingView(String showText) {

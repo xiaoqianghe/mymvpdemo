@@ -13,10 +13,8 @@ import com.suirenshi.mymvpdemo.modul.login.AuthenticateBean;
 
 public interface NewMvpView extends INetView {
 
-   void showMessage(String message);
+   //void showMessage(String message);
    void setLoginShowData(AuthenticateBean data);
-
-
 
 
 }

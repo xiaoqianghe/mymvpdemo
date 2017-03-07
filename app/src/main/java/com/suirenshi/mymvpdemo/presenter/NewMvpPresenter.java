@@ -1,17 +1,25 @@
 package com.suirenshi.mymvpdemo.presenter;
 
+import android.content.Context;
 import android.os.Handler;
 import android.util.Log;
 
 import com.alibaba.fastjson.JSON;
 import com.bq2015.bqhttp.event.BQNetEvent;
 import com.bq2015.bqhttp.net.OnBQNetEventListener;
+import com.google.gson.Gson;
+import com.suirenshi.mymvpdemo.Http.LoadCallBack;
+import com.suirenshi.mymvpdemo.Http.OkHttpHelper;
+import com.suirenshi.mymvpdemo.Http.SpotsCallBack;
 import com.suirenshi.mymvpdemo.biz.RequestBiz;
 import com.suirenshi.mymvpdemo.common.NetTest;
+import com.suirenshi.mymvpdemo.modul.LoginBean;
+import com.suirenshi.mymvpdemo.modul.LoginInfo;
 import com.suirenshi.mymvpdemo.modul.login.AuthenticateBean;
 import com.suirenshi.mymvpdemo.view.NewMvpView;
 
 import io.realm.Realm;
+import okhttp3.Response;
 
 /**
  * @包名: com.suirenshi.mymvpdemo.presenter
@@ -27,8 +35,10 @@ public class NewMvpPresenter extends BaseParsenter<NewMvpView> {
     private RequestBiz requestBiz;
     private Handler mHandler;
     private Realm realm;
+    private Context mContext;
 
-    public NewMvpPresenter() {
+    public NewMvpPresenter(Context mContext) {
+        this.mContext=mContext;
 
         realm = Realm.getDefaultInstance();
 
@@ -44,14 +54,10 @@ public class NewMvpPresenter extends BaseParsenter<NewMvpView> {
      *
      * */
    public void toLogin(String phone,String password){
-
-       //http://192.168.1.105:8002/srs-mobile/v3/auth/login
        mView.showLoadingView("登录中...");
-
        Log.d(TAG,"============================authenticate ::http://192.168.1.105:8002/srs-mobile/v3/auth/authenticate");
        NetTest.get(phone, password).getAuthenticate()
                .showProgress(mView,"正在加载中...")
-
                .execute(new OnBQNetEventListener() {
                    @Override
                    public void netRequestSuccess(BQNetEvent event) {
@@ -77,30 +83,84 @@ public class NewMvpPresenter extends BaseParsenter<NewMvpView> {
    }
 
 
-//    public void loadPrintIp(int apiKey, int branchNo, int start, int size){
-//
-//        NetTest.get().getPrintList(apiKey,branchNo,start,size)
-//                .showProgress(mView)
-//                .execute(new OnBQNetEventListener() {
-//                    @Override
-//                    public void netRequestSuccess(BQNetEvent event) {
-//                        String authenticateString = event.getNetResult();
-//                        PrintStyleInfo mPrintStyleInfo = JSON.parseObject(authenticateString, PrintStyleInfo.class);
-//                        if(null!=mPrintStyleInfo&&mPrintStyleInfo.getPrintingStyle().size()>0){
-//                            PrintingStyleSQL.save(realm, mPrintStyleInfo.getPrintingStyle());
-//                        }
-//
-//
-//                    }
-//
-//                    @Override
-//                    public boolean netRequestFail(BQNetEvent event) {
-//                        return false;
-//                    }
-//                });
-//
-//
-//    }
+
+
+    /**
+     *
+     * @todo: 新封装的Get请求
+     *
+     * */
+
+    public void toNewGet(){
+        String url="";
+        OkHttpHelper.getInstance().get(url, new SpotsCallBack<LoginBean>(mContext) {
+            @Override
+            public void onSuccess(Response response, LoginBean mLoginBean) {
+
+            }
+
+            @Override
+            public void onError(Response response, int code, Exception e) {
+
+            }
+        });
+
+
+
+    }
+
+    /**
+     * @todo: 新封装的OkHttp3的Pos请求的
+     *
+     *
+     * */
+    public void toNewPost(){
+        String url="http://192.168.1.105:8002/srs-mobile/v3/auth/login2";
+        LoginInfo mLoginInfo=new LoginInfo();
+        mLoginInfo.setPassword("123456");
+        mLoginInfo.setUsername("177000000033");
+        OkHttpHelper.getInstance().postJson(url, new Gson().toJson(mLoginInfo), new SpotsCallBack<AuthenticateBean>(mContext) {
+            @Override
+            public void onSuccess(Response response, AuthenticateBean mAuthenticateBean) {
+                Log.e(TAG, "=============onSuccess::" + new Gson().toJson(mAuthenticateBean));
+
+            }
+
+            @Override
+            public void onError(Response response, int code, Exception e) {
+                Log.e(TAG, "=============onError::" + code + "=========response.body().toString() ::" + response.body().toString());
+
+            }
+        });
+
+    }
+
+
+    /**
+     * @todo: 新封装的OkHttp3的Pos请求的
+     *
+     *
+     * */
+    public void toNewCallBackPost(){
+        String url="http://192.168.1.105:8002/srs-mobile/v3/auth/login2";
+        LoginInfo mLoginInfo=new LoginInfo();
+        mLoginInfo.setPassword("123456");
+        mLoginInfo.setUsername("177000000033");
+        OkHttpHelper.getInstance().postJson(url, new Gson().toJson(mLoginInfo), new LoadCallBack<AuthenticateBean>(mView) {
+            @Override
+            public void onSuccess(Response response, AuthenticateBean mAuthenticateBean) {
+                Log.e(TAG, "=============onSuccess::" + new Gson().toJson(mAuthenticateBean));
+
+            }
+            @Override
+            public void onError(Response response, int code, Exception e) {
+                mView.showMessage(code+":"+response.body().toString());
+                Log.e(TAG, "=============onError::" + code + "=========response.body().toString() ::" + response.body().toString());
+
+            }
+        });
+
+    }
 
 
 

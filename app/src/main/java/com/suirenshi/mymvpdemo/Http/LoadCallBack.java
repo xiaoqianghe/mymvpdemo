@@ -1,51 +1,41 @@
 package com.suirenshi.mymvpdemo.Http;
 
-import android.content.Context;
-import android.widget.Toast;
-
+import com.bq2015.oknet.modeinterface.INetView;
 import com.suirenshi.mymvpdemo.Utils.NetworkUtils;
+import com.suirenshi.mymvpdemo.app.MyMvpApplication;
 
 import java.io.IOException;
 
-import dmax.dialog.SpotsDialog;
 import okhttp3.Call;
 import okhttp3.Request;
 import okhttp3.Response;
 
 /**
  * @包名: com.suirenshi.mymvpdemo.Http
- * @类名: SpotsCallBack
+ * @类名: LoadCallBack
  * @创建人: xiaoqianghe
- * @创建时间 : 2017/3/6 20:35
+ * @创建时间 : 2017/3/7 11:41
  * @描述 : TODO
  */
 
-public abstract class SpotsCallBack<T> extends BaseCallback<T> {
-
-    private final String TAG = "SpotsCallBack";
+public abstract class LoadCallBack<T> extends BaseCallback<T> {
 
 
-
-
-    SpotsDialog spotsDialog;
-    Context mContext;
-
-    public SpotsCallBack(Context mContext) {
-        this.mContext=mContext;
-        spotsDialog=new SpotsDialog(mContext);
-    }
+    private INetView mView;
 
     private void showDialog(){
-        spotsDialog.show();
-        setDialogMessage("加载中");
+        mView.showLoadingView("加载中...");
     }
 
     private void dismissDialog(){
-        spotsDialog.dismiss();
+        mView.dissmissLoadingView();
     }
 
-    private void setDialogMessage(String message){
-        spotsDialog.setMessage(message);
+
+
+
+    public LoadCallBack(INetView mView) {
+        this.mView=mView;
 
     }
 
@@ -53,9 +43,10 @@ public abstract class SpotsCallBack<T> extends BaseCallback<T> {
     @Override
     public void onRequestBefore(Request request) {
         //这里需要校验一下网络
-        dismissDialog();
 
-
+        if(checkNetConnected()){
+            showDialog();
+        }
 
 
     }
@@ -63,7 +54,7 @@ public abstract class SpotsCallBack<T> extends BaseCallback<T> {
     @Override
     public void onFailure(Call call, IOException e) {
         dismissDialog();
-        Toast.makeText(mContext,"网络异常...",Toast.LENGTH_SHORT).show();
+
     }
 
 
@@ -79,10 +70,15 @@ public abstract class SpotsCallBack<T> extends BaseCallback<T> {
      * @return
      */
     protected boolean checkNetConnected() {
-        boolean isConnected = NetworkUtils.isNetworkConnected(mContext);
+        boolean isConnected = NetworkUtils.isNetworkConnected(MyMvpApplication.getContext());
         if (!isConnected) {
-            Toast.makeText(mContext,"网络异常...",Toast.LENGTH_SHORT).show();
+//            Toast.makeText(mContext, "网络异常...", Toast.LENGTH_SHORT).show();
+//            Log.e(TAG, "===网络异常...");
+            mView.showMessage("网络异常");
         }
         return isConnected;
     }
+
+
+
 }

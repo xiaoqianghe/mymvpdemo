@@ -17,9 +17,12 @@ public interface MvpView {
 
     void hideLoadingDialog();
 
-    void setListItem(List<String> data);//ListView数据的初始化
+
 
     void showMessage(String s);//Toast消息提示
+
+
+    void setListItem(List<String> data);//ListView数据的初始化
 
 
 

@@ -8,4 +8,6 @@ package com.bq2015.oknet.modeinterface;
 public interface INetView {
     void showLoadingView(String showText);
     void dissmissLoadingView();
+
+    void showMessage(String message);
 }
