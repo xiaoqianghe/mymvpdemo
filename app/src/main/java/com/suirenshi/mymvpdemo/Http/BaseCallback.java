@@ -17,13 +17,8 @@ import okhttp3.Response;
  */
 
 public abstract class BaseCallback<T>{
-
     public Type type;
-
-
-
     static Type getSuperclassTypeParameter(Class<?> subclass){
-
         Type superclass=subclass.getGenericSuperclass();
         if(superclass instanceof  Class){
             throw new RuntimeException("Miss type parameter .");
@@ -53,6 +48,11 @@ public abstract class BaseCallback<T>{
     public abstract void onError(Response response,int code,Exception e);
 
     public abstract void onResponse(Response response);
+
+    public abstract void onErrorResponse(Response response);
+
+    public abstract void onSuccessResponse(Response response);
+
 
 
 }

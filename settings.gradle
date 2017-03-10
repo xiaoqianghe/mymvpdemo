@@ -1,1 +1,1 @@
-include ':app', ':bqhttp'
+include ':app', ':bqhttp', ':bqlib'

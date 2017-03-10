@@ -79,6 +79,21 @@ public abstract class LoadCallBack<T> extends BaseCallback<T> {
         return isConnected;
     }
 
+    @Override
+    public void onErrorResponse(Response response) {
+
+        dismissDialog();
+
+    }
+
+    @Override
+    public void onSuccessResponse(Response response) {
+
+            dismissDialog();
+
+
+    }
+
 
 
 }

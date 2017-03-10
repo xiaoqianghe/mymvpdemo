@@ -55,7 +55,7 @@ public class NewMvpPresenter extends BaseParsenter<NewMvpView> {
      * */
    public void toLogin(String phone,String password){
        mView.showLoadingView("登录中...");
-       Log.d(TAG,"============================authenticate ::http://192.168.1.105:8002/srs-mobile/v3/auth/authenticate");
+       Log.d(TAG, "============================authenticate ::http://192.168.1.105:8002/srs-mobile/v3/auth/authenticate");
        NetTest.get(phone, password).getAuthenticate()
                .showProgress(mView,"正在加载中...")
                .execute(new OnBQNetEventListener() {
@@ -80,6 +80,8 @@ public class NewMvpPresenter extends BaseParsenter<NewMvpView> {
                        return false;
                    }
                });
+
+
    }
 
 

@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/bqhttp/bqhttp.iml" filepath="$PROJECT_DIR$/bqhttp/bqhttp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bqlib/bqlib.iml" filepath="$PROJECT_DIR$/bqlib/bqlib.iml" />
       <module fileurl="file://$PROJECT_DIR$/mymvpdemo.iml" filepath="$PROJECT_DIR$/mymvpdemo.iml" />
     </modules>
   </component>

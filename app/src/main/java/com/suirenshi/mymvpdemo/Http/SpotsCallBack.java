@@ -4,6 +4,7 @@ import android.content.Context;
 import android.widget.Toast;
 
 import com.suirenshi.mymvpdemo.Utils.NetworkUtils;
+import com.suirenshi.mymvpdemo.widght.LoadDataDialog;
 
 import java.io.IOException;
 
@@ -28,36 +29,36 @@ public abstract class SpotsCallBack<T> extends BaseCallback<T> {
 
 
     SpotsDialog spotsDialog;
+    LoadDataDialog mLoadDataDialog;
     Context mContext;
 
     public SpotsCallBack(Context mContext) {
         this.mContext=mContext;
-        spotsDialog=new SpotsDialog(mContext);
+        if(null!=mContext){
+//            spotsDialog=new SpotsDialog(mContext);
+            mLoadDataDialog=new LoadDataDialog(mContext);
+        }
+
     }
 
     private void showDialog(){
-        spotsDialog.show();
+        mLoadDataDialog.show();
         setDialogMessage("加载中");
     }
 
     private void dismissDialog(){
-        spotsDialog.dismiss();
+        mLoadDataDialog.dismiss();
     }
 
     private void setDialogMessage(String message){
-        spotsDialog.setMessage(message);
-
+        mLoadDataDialog.setMessage(message);
     }
 
 
     @Override
     public void onRequestBefore(Request request) {
         //这里需要校验一下网络
-        dismissDialog();
-
-
-
-
+        showDialog();
     }
 
     @Override
@@ -85,4 +86,20 @@ public abstract class SpotsCallBack<T> extends BaseCallback<T> {
         }
         return isConnected;
     }
+
+    @Override
+    public void onErrorResponse(Response response) {
+
+        dismissDialog();
+
+    }
+
+    @Override
+    public void onSuccessResponse(Response response) {
+
+            dismissDialog();
+
+
+    }
+
 }

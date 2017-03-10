@@ -89,22 +89,26 @@ public class OkHttpHelper {
                 }
                 @Override
                 public void onResponse(Call call, Response response) throws IOException {
-                    callback.onResponse(response);
+                    //callback.onResponse(response);
                     if (response.isSuccessful()) {
                         String resultStr = response.body().string();
                         if (callback.type == String.class) {
                             // callback.onSuccess(response,resultStr);
+                            callback.onSuccessResponse(response);
                             callbackSuccess(callback, response, resultStr);
                         } else {
                             try {
                                 Object object = gson.fromJson(resultStr, callback.type);
                                 // callback.onSuccess(response, object);
+                                callback.onSuccessResponse(response);
                                 callbackSuccess(callback, response, object);
                             } catch (JsonSyntaxException e) {
+                                callback.onErrorResponse(response);
                                 callbackError(callback, response, response.code(), e);
                             }
                         }
                     } else {
+                        callback.onErrorResponse(response);
                         callbackError(callback, response, response.code(), null);
                     }
                 }
