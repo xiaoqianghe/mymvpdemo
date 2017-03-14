@@ -29,8 +29,8 @@ public abstract class SpotsCallBack<T> extends BaseCallback<T> {
 
 
     SpotsDialog spotsDialog;
-    LoadDataDialog mLoadDataDialog;
-    Context mContext;
+    private static LoadDataDialog mLoadDataDialog;
+    private static  Context mContext;
 
     public SpotsCallBack(Context mContext) {
         this.mContext=mContext;

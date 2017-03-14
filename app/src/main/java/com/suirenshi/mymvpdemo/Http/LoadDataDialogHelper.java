@@ -36,9 +36,7 @@ public class LoadDataDialogHelper {
 
     public  void dismissDialog(){
         if(null!=mLoadDataDialog&&mLoadDataDialog.isShowing()){
-
-            Log.e(TAG, "=============dismissDialog()");
-            mLoadDataDialog.dismiss(); 
+            mLoadDataDialog.dismiss();
         }
         
     }

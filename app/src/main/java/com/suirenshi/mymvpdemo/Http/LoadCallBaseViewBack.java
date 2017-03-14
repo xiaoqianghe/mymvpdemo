@@ -1,5 +1,7 @@
 package com.suirenshi.mymvpdemo.Http;
 
+import com.suirenshi.mymvpdemo.Utils.NetworkUtils;
+import com.suirenshi.mymvpdemo.app.MyMvpApplication;
 import com.suirenshi.mymvpdemo.base.BaseViewInterface;
 
 import java.io.IOException;
@@ -16,30 +18,24 @@ import okhttp3.Response;
  * @描述 : TODO
  */
 
-public abstract class LoadCallBack<T> extends BaseCallback<T> {
+public abstract class LoadCallBaseViewBack<T> extends BaseCallback<T> {
 
 
     private BaseViewInterface mView;
-    private boolean successIsDismiss=true;
-
-    private void showDialog(){
-        mView.showLoadingView("加载中...");
-    }
-
-    private void dismissDialog(){
-        mView.dissmissLoadingView();
-    }
+    boolean successIsDimiss=true;
 
 
 
 
-    public LoadCallBack(BaseViewInterface mView) {
+
+
+    public LoadCallBaseViewBack(BaseViewInterface mView) {
         this.mView=mView;
 
     }
-    public LoadCallBack(BaseViewInterface mView,boolean successIsDismiss) {
+    public LoadCallBaseViewBack(BaseViewInterface mView,boolean successIsDimiss) {
         this.mView=mView;
-        this.successIsDismiss=successIsDismiss;
+        this.successIsDimiss=successIsDimiss;
 
     }
 
@@ -47,8 +43,9 @@ public abstract class LoadCallBack<T> extends BaseCallback<T> {
     @Override
     public void onRequestBefore(Request request) {
         //这里需要校验一下网络
+
         if(checkNetConnected()){
-            showDialog();
+            mView.showLoadingView("数据加载中");
         }
 
 
@@ -56,14 +53,14 @@ public abstract class LoadCallBack<T> extends BaseCallback<T> {
 
     @Override
     public void onFailure(Call call, IOException e) {
-        dismissDialog();
+        mView.dissmissLoadingView();
 
     }
 
 
     @Override
     public void onResponse(Response response) {
-        dismissDialog();
+       mView.dissmissLoadingView();
     }
 
 
@@ -73,19 +70,31 @@ public abstract class LoadCallBack<T> extends BaseCallback<T> {
      * @return
      */
     protected boolean checkNetConnected() {
-        return mView.IsNetConnected();
+        boolean isConnected = NetworkUtils.isNetworkConnected(MyMvpApplication.getContext());
+        if (!isConnected) {
+//            Toast.makeText(mContext, "网络异常...", Toast.LENGTH_SHORT).show();
+//            Log.e(TAG, "===网络异常...");
+            mView.showMessage("网络异常");
+        }
+        return isConnected;
     }
 
     @Override
     public void onErrorResponse(Response response) {
-        dismissDialog();
+
+       mView.dissmissLoadingView();
+
     }
 
     @Override
     public void onSuccessResponse(Response response) {
-        if(successIsDismiss) {
-            dismissDialog();
+        if(successIsDimiss){
+            mView.dissmissLoadingView();
         }
+
+
+
+
     }
 
 

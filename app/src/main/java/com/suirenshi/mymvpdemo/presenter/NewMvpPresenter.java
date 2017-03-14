@@ -8,7 +8,6 @@ import com.alibaba.fastjson.JSON;
 import com.bq2015.bqhttp.event.BQNetEvent;
 import com.bq2015.bqhttp.net.OnBQNetEventListener;
 import com.google.gson.Gson;
-import com.suirenshi.mymvpdemo.Http.LoadCallBack;
 import com.suirenshi.mymvpdemo.Http.OkHttpHelper;
 import com.suirenshi.mymvpdemo.Http.SpotsCallBack;
 import com.suirenshi.mymvpdemo.biz.RequestBiz;
@@ -144,23 +143,23 @@ public class NewMvpPresenter extends BaseParsenter<NewMvpView> {
      *
      * */
     public void toNewCallBackPost(){
-        String url="http://192.168.1.105:8002/srs-mobile/v3/auth/login2";
-        LoginInfo mLoginInfo=new LoginInfo();
-        mLoginInfo.setPassword("123456");
-        mLoginInfo.setUsername("177000000033");
-        OkHttpHelper.getInstance().postJson(url, new Gson().toJson(mLoginInfo), new LoadCallBack<AuthenticateBean>(mView) {
-            @Override
-            public void onSuccess(Response response, AuthenticateBean mAuthenticateBean) {
-                Log.e(TAG, "=============onSuccess::" + new Gson().toJson(mAuthenticateBean));
-
-            }
-            @Override
-            public void onError(Response response, int code, Exception e) {
-                mView.showMessage(code+":"+response.body().toString());
-                Log.e(TAG, "=============onError::" + code + "=========response.body().toString() ::" + response.body().toString());
-
-            }
-        });
+//        String url="http://192.168.1.105:8002/srs-mobile/v3/auth/login2";
+//        LoginInfo mLoginInfo=new LoginInfo();
+//        mLoginInfo.setPassword("123456");
+//        mLoginInfo.setUsername("177000000033");
+//        OkHttpHelper.getInstance().postJson(url, new Gson().toJson(mLoginInfo), new LoadCallBack<AuthenticateBean>(mView) {
+//            @Override
+//            public void onSuccess(Response response, AuthenticateBean mAuthenticateBean) {
+//                Log.e(TAG, "=============onSuccess::" + new Gson().toJson(mAuthenticateBean));
+//
+//            }
+//            @Override
+//            public void onError(Response response, int code, Exception e) {
+//                mView.showMessage(code+":"+response.body().toString());
+//                Log.e(TAG, "=============onError::" + code + "=========response.body().toString() ::" + response.body().toString());
+//
+//            }
+//        });
 
     }
 

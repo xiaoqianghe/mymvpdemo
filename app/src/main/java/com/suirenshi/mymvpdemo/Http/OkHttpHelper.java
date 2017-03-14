@@ -69,7 +69,7 @@ public class OkHttpHelper {
 
     }
 
-
+//
 //    public void post(String url,Map<String,String> params,BaseCallback callback){
 //        Request request=buildRequest(url,params,HttpMethodType.POST);
 //        doRequets(request, callback);
@@ -116,8 +116,6 @@ public class OkHttpHelper {
         }
     }
 
-
-
 //
 //    private Request buildRequest(String url,Map<String,String> params,HttpMethodType httpMethodType){
 //        Request.Builder build=new Request.Builder();
@@ -152,7 +150,6 @@ public class OkHttpHelper {
 
     public void postJson(String url,String json,BaseCallback callback){
         request=buildJsonRequest(url,json,HttpMethodType.POST);
-
         doRequets(request, callback);
     }
 
@@ -182,7 +179,6 @@ public class OkHttpHelper {
     public  RequestBody buildJsonData(String josn){
         MediaType JSON = MediaType.parse("application/json; charset=utf-8");
         RequestBody body=RequestBody.create(JSON,josn);
-
         return body;
     }
 

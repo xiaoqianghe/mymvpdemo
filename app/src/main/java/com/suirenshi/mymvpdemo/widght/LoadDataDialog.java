@@ -23,6 +23,7 @@ public class LoadDataDialog extends AlertDialog {
     private int size;
 
     private CharSequence message;
+    private Context context;
 
     public LoadDataDialog(Context context) {
         this(context, R.style.SpotsDialogDefault);
@@ -31,6 +32,7 @@ public class LoadDataDialog extends AlertDialog {
     public LoadDataDialog(Context context, CharSequence message) {
         this(context);
         this.message = message;
+        this.context=context;
     }
 
     public LoadDataDialog(Context context, CharSequence message, int theme) {
@@ -39,6 +41,7 @@ public class LoadDataDialog extends AlertDialog {
     }
 
     public LoadDataDialog(Context context, int theme) {
+
         super(context, theme);
     }
 
@@ -49,27 +52,23 @@ public class LoadDataDialog extends AlertDialog {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.loading_data_dialog);
         setCanceledOnTouchOutside(false);
-
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-
     }
 
     @Override
     public void setMessage(CharSequence message) {
-        ((TextView) findViewById(R.id.tv_msg)).setText(message);
+        ((TextView)findViewById(R.id.tv_msg)).setText(message);
     }
 
 
